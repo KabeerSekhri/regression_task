@@ -13,9 +13,9 @@ dataset.drop_duplicates(inplace=True)
 #dataset.corr()['FUEL CONSUMPTION'] # To find correlation
 
 X = dataset[['ENGINE SIZE','CYLINDERS','COEMISSIONS']] # Features (independent)
-Y = dataset['FUEL CONSUMPTION'] # Target (dependent)
+Y = dataset['FUEL CONSUMPTION'].values.reshape(-1, 1) # Target (dependent)
 X = np.c_[np.ones(X.shape[0]), X] # Adding a column of 1s for constant in matrix multiplication
 
-split_size = int(0.75*len(dataset)) # Split X and Y into training and testing set in 8:2
-X_train, Y_train = [X[:split_size]], [Y[:split_size]]
-X_test, Y_test = [X[split_size:]], [Y[split_size:]]
+#split_size = int(0.75*len(dataset)) # Split X and Y into training and testing set in 8:2
+#X_train, Y_train = [X[:split_size]], [Y[:split_size]]
+#X_test, Y_test = [X[split_size:]], [Y[split_size:]]
