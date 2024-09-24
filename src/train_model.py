@@ -18,6 +18,8 @@ def cost_func(x,y):
   MSE = MSE/(2*len(y))
   return MSE 
 
+W = np.random.randint(0,1,size=(X.shape[1],1)).astype(np.float64) # Initialise W to 0s
+
 #Gradiant Descent
 def gradiant_descent(x,y,L,w):
     gd0=0;gd1=0;gd2=0;gd3=0
@@ -40,7 +42,7 @@ def linear_regress(x,y,L,n):
 
   w = np.zeros((x.shape[1],1)) # Initialize theta to all zeros
 
-  cost_list=[] #To check if costs are actually reducing
+  cost_list=[] #To check costs
 
   for i in range(n):
     y_pred = np.dot(x,w) # Predicted value of Y
