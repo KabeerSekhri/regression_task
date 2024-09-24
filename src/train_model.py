@@ -3,6 +3,7 @@ import pandas as pd
 import data_preprocessing
 
 #Equation of line = w0 + w1x1 + w2x2 + w3x3 
+# 3 Feautures, 1 Target
 # L = learning rate
 # n = interations
 
@@ -19,25 +20,17 @@ def cost_func(x,y):
 
 #Gradiant Descent
 def gradiant_descent(x,y,L,w):
-
-    #derivative of MSE function with each Xi
-    #update Xi = Xi - L*gd
-
-    #gd is when we update all values in w
-    #we do gd everytime for n iterations
-    #here only once is needed
-
-    w0=0;w1=0;w2=0;w3=0;
+    gd0=0;gd1=0;gd2=0;gd3=0
     for i in range(len(y)):
-      w0 += -(2/len(y)) * (y - (w[0]*(x[i][0]) + w[1] + w[2] +w[3]))*x[i][0]
-      w1 += -(2/len(y)) * (y - (w[0]*(x[i][1]) + w[1] + w[2] +w[3]))*x[i][1]
-      w2 += -(2/len(y)) * (y - (w[0]*(x[i][2]) + w[1] + w[2] +w[3]))*x[i][2]
-      w3 += -(2/len(y)) * (y - (w[0]*(x[i][3]) + w[1] + w[2] +w[3]))*x[i][3]
+      gd0 += -(1/len(y)) * (y[i] - (w[0]*(x[i][0]) + w[1] + w[2] +w[3]))
+      gd1 += -(1/len(y)) * (y[i] - (w[0]*(x[i][1]) + w[1] + w[2] +w[3]))*x[i][1]
+      gd2 += -(1/len(y)) * (y[i] - (w[0]*(x[i][2]) + w[1] + w[2] +w[3]))*x[i][2]
+      gd3 += -(1/len(y)) * (y[i] - (w[0]*(x[i][3]) + w[1] + w[2] +w[3]))*x[i][3]
 
-    w[0]-= L*w0
-    w[1]-= L*w1
-    w[2]-= L*w2
-    w[3]-= L*w3
+    w[0]-= L*gd0
+    w[1]-= L*gd1
+    w[2]-= L*gd2
+    w[3]-= L*gd3
 
     return w
     
