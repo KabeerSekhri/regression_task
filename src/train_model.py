@@ -40,7 +40,7 @@ def gradiant_descent(x,y,L,w):
     return w
 
 
-#Implementation with Matrix
+#Implementation with Matrix (Faster)
 def linear_regress(x,y,L,n):
 
   w = np.zeros((x.shape[1],1)) # Initialize theta to all zeros
