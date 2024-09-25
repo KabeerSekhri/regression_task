@@ -20,22 +20,25 @@ def cost_func(x,y):
 
 W = np.random.randint(0,1,size=(X.shape[1],1)).astype(np.float64) # Initialise W to 0s
 
-#Gradiant Descent
-def gradiant_descent(x,y,L,w):
-    gd0=0;gd1=0;gd2=0;gd3=0
-    for i in range(len(y)):
-      gd0 += -(1/len(y)) * (y[i] - (w[0]*(x[i][0]) + w[1] + w[2] +w[3]))
-      gd1 += -(1/len(y)) * (y[i] - (w[0]*(x[i][1]) + w[1] + w[2] +w[3]))*x[i][1]
-      gd2 += -(1/len(y)) * (y[i] - (w[0]*(x[i][2]) + w[1] + w[2] +w[3]))*x[i][2]
-      gd3 += -(1/len(y)) * (y[i] - (w[0]*(x[i][3]) + w[1] + w[2] +w[3]))*x[i][3]
+#Gradiant Descent 
+def gradiant_descent(x,y,L,w): 
 
-    w[0]-= L*gd0
+    gd0=0;gd1=0;gd2=0;gd3=0
+    for i in range(len(y)): # For each row in Y
+      y_pred = np.dot(x[i],w) # Y_pred = X.W
+      gd0 += -(1/len(y)) * (y[i] - y_pred) # Derivative wrt w0
+      gd1 += -(1/len(y)) * (y[i] - y_pred)*x[i][1] # Derivative wrt w1
+      gd2 += -(1/len(y)) * (y[i] - y_pred)*x[i][2] # Derivative wrt w2
+      gd3 += -(1/len(y)) * (y[i] - y_pred)*x[i][3] # Derivative wrt w3
+
+    #Updating Ws
+    w[0]-= L*gd0 
     w[1]-= L*gd1
     w[2]-= L*gd2
     w[3]-= L*gd3
 
     return w
-    
+
 
 #Implementation with Matrix
 def linear_regress(x,y,L,n):
