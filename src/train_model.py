@@ -1,6 +1,6 @@
 import numpy as np 
 import pandas as pd 
-import data_preprocessing
+from data_preprocessing import X,Y
 
 #Equation of line = w0 + w1x1 + w2x2 + w3x3 
 # 3 Feautures, 1 Target
