@@ -1,6 +1,5 @@
 import numpy as np 
 import pandas as pd 
-from data_preprocessing import X,Y
 
 #Equation of line = w0 + w1x1 + w2x2 + w3x3 
 # 3 Feautures, 1 Target
@@ -8,17 +7,14 @@ from data_preprocessing import X,Y
 # n = interations
 
 #Cost Function
-def cost_func(x,y):
-  y_pred = np.random.randint(0,1,size=(len(y),1))
-  w = np.random.randint(0,1,size=(x.shape[1],1))
+def cost_func(x,y,w):  #for given thetas (w)
+  y_pred = np.random.randint(0,1,size=(len(y),1)) # Initialise column with 0s
   MSE = 0
   for i in range(len(y)):
-    y_pred[i] = np.dot(x[i],w)
-    MSE += np.square(y[i] - y_pred[i])
-  MSE = MSE/(2*len(y))
-  return MSE 
-
-W = np.random.randint(0,1,size=(X.shape[1],1)).astype(np.float64) # Initialise W to 0s
+    y_pred[i] = np.dot(x[i],w) # Predict y for row i
+    MSE += np.square(y[i] - y_pred[i]) # MSE for row i
+  MSE = MSE/(2*len(y)) # MSE for all rows
+  return MSE
 
 #Gradiant Descent 
 def gradiant_descent(x,y,L,w): 
@@ -53,7 +49,7 @@ def linear_regress(x,y,L,n):
     gd = 1/len(y) * np.dot(x.T,(y_pred-y)) # Gradiant descent
     w = w - L*gd # Update theta
 
-    if i%1000==0:
+    if i%100==0:
       cost_list.append(cost)
   return w, cost_list
 
