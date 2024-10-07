@@ -9,6 +9,7 @@ n= 1000
 L = 0.00001
 
 # Basic model without vetorization
+'''
 cost_list = []
 W = np.random.randint(0,1,size=(X.shape[1],1)).astype(np.float64) # Initialise W to 0s
 
@@ -25,6 +26,8 @@ with open('../models/regression_model1.pkl', 'rb') as file:
     loaded_w = pickle.load(file)
 
 y_pred_b = np.dot(X, loaded_w) 
+'''
+
 
 # Faster model with vectorization (matrix)
 w, cost_list = linear_regress(X,Y,L,n)
@@ -37,4 +40,5 @@ with open('../models/regression_model_final.pkl', 'rb') as file:
     loaded_w = pickle.load(file)
 
 y_pred_v = np.dot(X, loaded_w) 
-
+y_pred_v = pd.DataFrame(y_pred_v)
+y_pred_v.to_csv('../results/train_predictions.csv', index=False, header=False) 
